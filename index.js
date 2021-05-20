@@ -49,7 +49,7 @@ app.post("/create", async(req,res)=>{
 
 app.put("/update/:id", async(req,res)=>{
     try {
-        let client  = await mongoClient.connect(URL ,{ useNewUrlParser: true });
+        let client  = await mongoClient.connect(URL);
         let db = client.db(DB);
         await db.collection('products').findOneAndUpdate({_id: req.params.id}, {$set: req.body});
         res.status(200).json({message:'data updated'})
